@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "./app.js",
-      "destination": "/api"
+      "source": "./",
+      "destination": "/"
     }
   ]
 }

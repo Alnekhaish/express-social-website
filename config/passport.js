@@ -19,8 +19,8 @@ passport.use(
           username: username,
           email: req.body.email,
           profile: {
-            first_name: req.body.firstName,
-            last_name: req.body.lastName,
+            first_name: req.body.firstname,
+            last_name: req.body.lastname,
           },
         });
         await user.save();

@@ -42,14 +42,14 @@ const timeline = async (req, res) => {
       author: { $in: [...user.profile.following, user._id] },
     }).populate(
       'author',
-      'username profile profile.first_name profile.last_name profile.avatar',
+      'username profile.first_name profile.last_name profile.avatar',
     );
     const comments = await Comment.find({
       author: { $in: [...user.profile.following, user._id] },
     })
       .populate(
         'author',
-        'username profile profile.first_name profile.last_name profile.avatar',
+        'username porfile profile.first_name profile.last_name profile.avatar',
       )
       .populate({
         path: 'post',
@@ -58,10 +58,11 @@ const timeline = async (req, res) => {
           path: 'author',
           model: 'User',
           select:
-            'username profile.first_name profile.last_name profile.avatar',
+            'username porfile profile.first_name profile.last_name profile.avatar',
         },
       });
 
+    console.log(posts);
     const typedPosts = posts.map((doc) => ({
       ...doc.toObject(),
       type: 'post',
@@ -93,6 +94,7 @@ const timeline = async (req, res) => {
       timeline: mergedData,
     });
   } catch (error) {
+    console.log(error);
     return res.json(error);
   }
 };

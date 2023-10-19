@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const port = process.env.PORT || '8000';
 
 const db = require('./config/db');
 const passport = require('passport');
@@ -54,5 +55,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
 module.exports = app;

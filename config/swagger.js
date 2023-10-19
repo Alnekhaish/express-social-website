@@ -36,7 +36,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://express-social-website.vercel.app/',
+        url: 'http://localhost:8000',
       },
     ],
   },

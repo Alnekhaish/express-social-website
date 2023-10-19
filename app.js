@@ -10,6 +10,8 @@ const db = require('./config/db');
 const passport = require('passport');
 
 const { swaggerUi, swaggerOptions } = require('./config/swagger');
+const CSS_URL =
+  'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css';
 
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
@@ -30,7 +32,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerOptions, { customCssUrl: CSS_URL }),
+);
 app.use('/', authRouter);
 app.use(passport.authenticate('jwt', { session: false }));
 app.use('/users', usersRouter);

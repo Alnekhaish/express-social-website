@@ -42,14 +42,14 @@ const timeline = async (req, res) => {
       author: { $in: [...user.profile.following, user._id] },
     }).populate(
       'author',
-      'username porfile profile.first_name profile.last_name profile.avatar',
+      'username profile profile.first_name profile.last_name profile.avatar',
     );
     const comments = await Comment.find({
       author: { $in: [...user.profile.following, user._id] },
     })
       .populate(
         'author',
-        'username porfile profile.first_name profile.last_name profile.avatar',
+        'username profile profile.first_name profile.last_name profile.avatar',
       )
       .populate({
         path: 'post',

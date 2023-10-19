@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   '/api-docs',
   swaggerUi.serve,
-  swaggerUi.setup(swaggerOptions, { explorer: true, customCss: CSS_URL }),
+  swaggerUi.setup(swaggerOptions, { explorer: true, customCssUrl: CSS_URL }),
 );
 app.use('/', authRouter);
 app.use(passport.authenticate('jwt', { session: false }));
